@@ -1,0 +1,21 @@
+
+p
+@app/src/main/java/com/fpiardi/monitoringservices/MainActivity.kt,b/e/be2061704125707ece8c59efc6d08fb5117dd07a
+€
+Papp/src/main/java/com/fpiardi/monitoringservices/adapters/DetailsErrorAdapter.kt,c/4/c4b5b88ca773d5610aafe8ff96efb9b10142ef6f
+€
+Papp/src/main/java/com/fpiardi/monitoringservices/adapters/SourceErrorsAdapter.kt,c/6/c6db5c71607649e0833c8e2aed24a939500d77db
+y
+Iapp/src/main/java/com/fpiardi/monitoringservices/DetailsErrorsActivity.kt,2/3/23f1098f8b0d1321525e2d0e3391ede9d0f027ef
+@
+app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
+x
+Happ/src/main/java/com/fpiardi/monitoringservices/SourceErrorsActivity.kt,0/0/000c528046e0dd3009a0c61727ddc47c81737451
+v
+Fapp/src/main/java/com/fpiardi/monitoringservices/model/SourceErrors.kt,c/d/cdc25b20661d94fa81eef2c272958fe8f3ee28c2
+P
+ app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
+{
+Kapp/src/main/java/com/fpiardi/monitoringservices/network/RetrofitService.kt,2/c/2c6dcbef6c64fb5b91dd7be765f837e8585648d6
+{
+Kapp/src/main/java/com/fpiardi/monitoringservices/network/RetrofitFactory.kt,e/6/e6dd8758ee459fb521179cf75100369b2a1bfb2a
