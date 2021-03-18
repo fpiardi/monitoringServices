@@ -4,17 +4,18 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fpiardi.monitoringservices.adapters.DetailsErrorAdapter
 import com.fpiardi.monitoringservices.model.DetailsError
-import com.fpiardi.monitoringservices.network.RetrofitFactory
+import com.fpiardi.monitoringservices.viewmodel.DetailsErrorViewModel
 import kotlinx.android.synthetic.main.activity_source_errors.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailsErrorsActivity : AppCompatActivity() {
+
+    private val viewModel: DetailsErrorViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details_errors)
@@ -23,35 +24,30 @@ class DetailsErrorsActivity : AppCompatActivity() {
         val source = intent.getStringExtra(EXTRA_SOURCE) ?:  String()
 
         title = source
-        callAPI(source, hours)
-    }
 
-    private fun callAPI(source: String, hours: Int) {
-        val service = RetrofitFactory.makeRetrofitService()
-        CoroutineScope(Dispatchers.IO).launch {
-            val response = service.getSourceErrorDetail(source, hours)
-            try {
-                withContext(Dispatchers.Main) {
-                    if (response.isSuccessful) {
-                        response.body()?.let { initRecyclerView(it) }
-                    } else {
-                        showError("Error network operation failed with ${response.code()} ${response.message()}")
-                    }
+        viewModel.fetchData(source, hours)
+        viewModel.status.observe(this, Observer {
+            when (it) {
+                is DetailsErrorViewModel.Status.Error -> {
+                    showError(it.message)
                 }
-            } catch (e: Exception) {
-                showError("Exception ${e.message}")
+                is DetailsErrorViewModel.Status.Success -> {
+                    it.list?.let { data -> showSuccess(data) }
+
+                    progressBar.visibility = View.GONE
+                }
             }
-        }
+
+        })
     }
 
     private fun showError(message: String) {
         Toast.makeText(this,  message, Toast.LENGTH_SHORT)
     }
 
-    private fun initRecyclerView(list: List<DetailsError>) {
+    private fun showSuccess(list: List<DetailsError>) {
         val orderedList = list.sortedByDescending { it.date }
         recyclerview.layoutManager = LinearLayoutManager(this)
         recyclerview.adapter = DetailsErrorAdapter(orderedList, this)
-        progressBar.visibility = View.GONE
     }
 }

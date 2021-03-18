@@ -33,6 +33,7 @@
         android:paddingTop="4dp"
         android:paddingBottom="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/date"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
