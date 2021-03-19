@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MonitoringServices</string>
+    <string name="label_info">Number of hours to get logs</string>
+    <string name="search">Search</string>
+    <string name="insert">Insert Log Room</string>
+    <string name="delete">Delete Log Room</string>
+    <string name="hint_search_box">Search word and click search</string>
+    <string name="no_details_text">No details available</string>
 </resources>

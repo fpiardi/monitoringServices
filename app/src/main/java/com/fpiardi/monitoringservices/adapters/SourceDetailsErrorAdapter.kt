@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.fpiardi.monitoringservices.R
-import com.fpiardi.monitoringservices.model.DetailsError
+import com.fpiardi.monitoringservices.model.SourceDetailError
 
-class DetailsErrorAdapter(private val list: List<DetailsError>, private val context: Context) :
-    RecyclerView.Adapter<DetailsErrorAdapter.ItemHolder>()  {
+class SourceDetailsErrorAdapter(private val list: List<SourceDetailError>, private val context: Context) :
+    RecyclerView.Adapter<SourceDetailsErrorAdapter.ItemHolder>()  {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         return ItemHolder(
             LayoutInflater.from(context)
-                .inflate(R.layout.item_details_error, parent, false)
+                .inflate(R.layout.item_search_result, parent, false)
         )
     }
 
@@ -32,16 +32,13 @@ class DetailsErrorAdapter(private val list: List<DetailsError>, private val cont
 
         private val nameTextView = itemView.findViewById<TextView>(R.id.name)
         private val dateTextView = itemView.findViewById<TextView>(R.id.date)
-        private val timeTextView = itemView.findViewById<TextView>(R.id.time)
+        private val sourceTextView = itemView.findViewById<TextView>(R.id.source)
 
-        fun bind(item: DetailsError) {
-            nameTextView.text = normalizeName(item.name)
-            dateTextView.text = item.date.substringBefore("T", item.date)
-            timeTextView.text = item.date.substringAfter("T", String())
+        fun bind(item: SourceDetailError) {
+            nameTextView.text = item.name
+            dateTextView.text = item.date
+            sourceTextView.text = item.source
         }
-
-        private fun normalizeName(name: String)
-            = name.replace(oldValue = ";", newValue = "\\r\\n")
     }
 
 }
